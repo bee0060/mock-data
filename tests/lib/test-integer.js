@@ -83,6 +83,20 @@
 
         done();
       });
+      it("should independ of this pointer", function(done) {
+        var result = undefined;
+        int = rInt(rStart, rEnd);
+
+        result = int.generate.call(null)
+        result.should.be.a.Number
+        should(result).not.be.greaterThan(rEnd).and.not.be.lessThan(rStart)
+
+        result = int.generate.apply(null)
+        result.should.be.a.Number
+        should(result).not.be.greaterThan(rEnd).and.not.be.lessThan(rStart)
+
+        done();
+      });
       it("should generate integer with given params, in three different ways", function(done) {
         var genStart = false
         ,   genEnd   = false;

@@ -164,13 +164,17 @@
         }, function(err, data) {
           should.exist(data) && data.should.be.an.Array;
           data.length.should.equal(100);
-
+          console.log('should generate correct integer by callback', data, rStart, rEnd)
           var genStart = false,
             genEnd = false;
           for (var i = 0; i < data.length; i++) {
+            if(data[i] > rEnd) { console.log(' greater than rEnd on index:', i, data[i], rEnd); }
+            if(data[i] < rStart) { console.log(' less than rStart on index:', i, data[i], rStart); }
+
             should.exist(data[i]) && data[i].should.be.a.Number;
             should(data[i]).not.be.greaterThan(rEnd).and.not.be.lessThan(rStart);
 
+            
             if (data[i] === rStart) {
               genStart = true;
             } else if (data[i] === rEnd) {
